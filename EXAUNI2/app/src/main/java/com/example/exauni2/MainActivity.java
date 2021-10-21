@@ -3,6 +3,7 @@ package com.example.exauni2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,5 +26,9 @@ public class MainActivity extends AppCompatActivity {
         String[] fichas={"6", "12", "18","24"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, fichas);
         spFichas.setAdapter(adapter);
+    }
+
+    public void lanzarActivity(View view){
+        
     }
 }

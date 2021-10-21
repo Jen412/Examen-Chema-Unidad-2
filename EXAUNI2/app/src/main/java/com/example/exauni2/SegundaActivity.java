@@ -129,7 +129,7 @@ public class SegundaActivity extends AppCompatActivity {
             mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
             tvGanador.setText(mensajeVictoria);
             tvGanador.setVisibility(View.VISIBLE);
-            finish();
+            //finish();
         }
         else {
             if(mesa<0) { // Verificación de si hay 0 en la mesa

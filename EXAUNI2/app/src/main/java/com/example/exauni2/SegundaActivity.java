@@ -118,11 +118,11 @@ public class SegundaActivity extends AppCompatActivity {
                 }
                 mesa -= 3;
         }
-        if(jugador1<0 || (jugador1<0 && mesa<0)){ // FIN DEL JUEGO
+        if(jugador1<0 || (jugador1<1 && mesa<0)){ // FIN DEL JUEGO
             mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
             tvGanador.setText(mensajeVictoria);
             tvGanador.setVisibility(View.VISIBLE);
-            finish();
+            //finish();
 
         }
         else if(jugador2<0 || (jugador2<0 && mesa<0)){ // FIN DEL JUEGO

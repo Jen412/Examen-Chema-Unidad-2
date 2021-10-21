@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ public class SegundaActivity extends AppCompatActivity {
     private int jugador1, jugador2, mesa;
     private String nombre1 = "", nombre2 = "", mensajeVictoria = "";
     private boolean jugador = true; //Jugador 1 es true y jugador 2 es false
+    private Button btLanzar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class SegundaActivity extends AppCompatActivity {
         tvFichasJugador2 = (TextView) findViewById(R.id.tvFichasJugador2);
         tvMesa = (TextView) findViewById(R.id.tvMesa);
         tvGanador = (TextView) findViewById(R.id.tvGanador);
+        btLanzar = (Button)findViewById(R.id.btLanzar);
 
         Bundle bundle = getIntent().getExtras();
         nombre1 = bundle.getString("jugador1");
@@ -119,7 +122,7 @@ public class SegundaActivity extends AppCompatActivity {
                 mesa -= 3;
         }
         if(jugador1<0 || (jugador1<1 && mesa<0)){ // FIN DEL JUEGO
-            mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
+            mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
             tvGanador.setText(mensajeVictoria);
             tvGanador.setVisibility(View.VISIBLE);
             btLanzar.setEnabled(false);
@@ -127,7 +130,7 @@ public class SegundaActivity extends AppCompatActivity {
 
         }
         else if(jugador2<0 || (jugador2<0 && mesa<0)){ // FIN DEL JUEGO
-            mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
+            mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
             tvGanador.setText(mensajeVictoria);
             tvGanador.setVisibility(View.VISIBLE);
             btLanzar.setEnabled(false);

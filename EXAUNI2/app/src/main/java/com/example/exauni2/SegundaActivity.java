@@ -122,6 +122,7 @@ public class SegundaActivity extends AppCompatActivity {
             mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
             tvGanador.setText(mensajeVictoria);
             tvGanador.setVisibility(View.VISIBLE);
+            btLanzar.setEnabled(false);
             //finish();
 
         }
@@ -129,6 +130,7 @@ public class SegundaActivity extends AppCompatActivity {
             mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
             tvGanador.setText(mensajeVictoria);
             tvGanador.setVisibility(View.VISIBLE);
+            btLanzar.setEnabled(false);
             //finish();
         }
         else {

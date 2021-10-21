@@ -21,7 +21,7 @@ public class SegundaActivity extends AppCompatActivity {
         tvJugador1.setText(nombre1);
         String nombre2 = bundle.getString("jugador2");
         tvJugador2.setText(nombre2);
-        int fichas = Integer.parseInt(bundle.getString("fichas"));
-        
+        int fichas = bundle.getInt("fichas");
+
     }
 }

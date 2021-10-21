@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">EXAUNI2</string>
+    <string name="app_name">JFBR, JEPJ, LAGG</string>
+    <string name="button_jugada">Iniciar el Juego</string>
+    <string name="button_lanzar">LANZAR DADO</string>
 </resources>

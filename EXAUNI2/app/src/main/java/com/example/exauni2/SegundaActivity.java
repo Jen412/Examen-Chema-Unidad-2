@@ -10,8 +10,9 @@ import android.widget.Toast;
 
 public class SegundaActivity extends AppCompatActivity {
 
-    private TextView tvJugador1, tvJugador2, tvFichasJugador1, tvFichasJugador2, tvMesa;
+    private TextView tvJugador1, tvJugador2, tvFichasJugador1, tvFichasJugador2, tvMesa, tvGanador;
     private int jugador1, jugador2, mesa;
+    private String nombre1 = "", nombre2 = "", mensajeVictoria = "";
     private boolean jugador = true; //Jugador 1 es true y jugador 2 es false
 
     @Override
@@ -23,11 +24,12 @@ public class SegundaActivity extends AppCompatActivity {
         tvFichasJugador1 = (TextView) findViewById(R.id.tvFichasJugador1);
         tvFichasJugador2 = (TextView) findViewById(R.id.tvFichasJugador2);
         tvMesa = (TextView) findViewById(R.id.tvMesa);
+        tvGanador = (TextView) findViewById(R.id.tvGanador);
 
         Bundle bundle = getIntent().getExtras();
-        String nombre1 = bundle.getString("jugador1");
+        nombre1 = bundle.getString("jugador1");
         tvJugador1.setText(nombre1);
-        String nombre2 = bundle.getString("jugador2");
+        nombre2 = bundle.getString("jugador2");
         tvJugador2.setText(nombre2);
         int fichas = bundle.getInt("fichas");
         mesa = 6;
@@ -117,12 +119,15 @@ public class SegundaActivity extends AppCompatActivity {
                 mesa -= 3;
         }
         if(jugador1<0 || (jugador1<0 && mesa<0)){ // FIN DEL JUEGO
+            mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
+            tvGanador.setText(mensajeVictoria);
             finish();
-            //Aqui la el codigo para cuando se termine el juego
+
         }
         else if(jugador2<0 || (jugador2<0 && mesa<0)){ // FIN DEL JUEGO
+            mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
+            tvGanador.setText(mensajeVictoria);
             finish();
-            //Igual
         }
         else {
             if(mesa<0) { // Verificación de si hay 0 en la mesa

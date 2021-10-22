@@ -8,4 +8,5 @@
     <string name="mensaje_nombres">Ingrese el nombre de los Jugadores: </string>
     <string name="mensaje_ganaste">ERES EL GANADOR!!!!!!!</string>
     <string name="mensaje_error">Debe llenar los campos de los jugadores</string>
+    <string name="numero_fichas">No. Fichas:</string>
 </resources>

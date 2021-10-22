@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("jugador2",nombreJugador2);
             intent.putExtra("fichas", fichas);
             startActivityForResult(intent, NOMBRE_REQUEST_CODE);
-            etJugador1.setText("");
-            etJugador2.setText("");
         }
         else{
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);

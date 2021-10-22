@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ public class SegundaActivity extends AppCompatActivity {
     private TextView tvJugador1, tvJugador2, tvFichasJugador1, tvFichasJugador2, tvMesa, tvGanador;
     private int jugador1, jugador2, mesa;
     private String nombre1 = "", nombre2 = "", mensajeVictoria = "";
-    private boolean jugador = true; //Jugador 1 es true y jugador 2 es false
+    private boolean jugador = true, ganador = true; //Jugador 1 es true y jugador 2 es false
     private Button btLanzar;
 
     @Override
@@ -46,9 +47,86 @@ public class SegundaActivity extends AppCompatActivity {
     }
 
     public void lanzamiento(View view){
+        int dado = (int) (Math.random() * 6) + 1;;
+        if(finalizacion(dado)){
+            jugar(dado);
+        }
+        else{
+            if(ganador){ // Cuando es true gano el primer jugador y si es false gano el segundo jugador
+                mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
+                tvGanador.setTextColor(Color.MAGENTA);
+                tvGanador.setText(mensajeVictoria);
+                tvGanador.setVisibility(View.VISIBLE);
+                btLanzar.setEnabled(false);
+            }
+            else{
+                mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
+                tvGanador.setTextColor(Color.MAGENTA);
+                tvGanador.setText(mensajeVictoria);
+                tvGanador.setVisibility(View.VISIBLE);
+                btLanzar.setEnabled(false);
+            }
+        }
+    }
+
+    public boolean finalizacion(int numero){
+        boolean flag = true; // Si es true el juego continua sino termina
+        int auxJugador1 = jugador1, auxJugador2 = jugador2;
+
+        if(numero==1){
+            if(jugador){
+                auxJugador1-=1;
+                if(auxJugador1<0){
+                    ganador = false;
+                    flag = false;
+                }
+            }
+            else{
+                auxJugador2-=1;
+                if(auxJugador2<0){
+                    ganador = true;
+                    flag = false;
+                }
+            }
+        }
+        else if(numero==2){
+            if(jugador){
+                auxJugador1-=2;
+                if(auxJugador1<0){
+                    ganador = false;
+                    flag = false;
+                }
+            }
+            else{
+                auxJugador2-=2;
+                if(auxJugador2<0){
+                    ganador = true;
+                    flag = false;
+                }
+            }
+        }
+        else if(numero==3){
+            if(jugador){
+                auxJugador1-=3;
+                if(auxJugador1<0){
+                    ganador = false;
+                    flag = false;
+                }
+            }
+            else{
+                auxJugador2-=3;
+                if(auxJugador2<0){
+                    ganador = true;
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
+
+    public void jugar(int numero3){
         String leyenda = "";
-        int numero = (int) (Math.random() * 6) + 1;;
-        switch(numero){
+        switch(numero3){
             case 1:
                 leyenda = "-1";
                 if(jugador){
@@ -121,40 +199,27 @@ public class SegundaActivity extends AppCompatActivity {
                 }
                 mesa -= 3;
         }
-        if(jugador1<0 || (jugador1<1 && mesa<0)){ // FIN DEL JUEGO
-            mensajeVictoria = (nombre2 + " " + getString(R.string.mensaje_ganaste));
-            tvGanador.setText(mensajeVictoria);
-            tvGanador.setVisibility(View.VISIBLE);
-            btLanzar.setEnabled(false);
-            //finish();
+        if(mesa<=0){
+            mesa = 2;
+            jugador1-=1;
+            jugador2-=1;
+        }
 
-        }
-        else if(jugador2<0 || (jugador2<0 && mesa<0)){ // FIN DEL JUEGO
-            mensajeVictoria = (nombre1 + " " + getString(R.string.mensaje_ganaste));
-            tvGanador.setText(mensajeVictoria);
-            tvGanador.setVisibility(View.VISIBLE);
-            btLanzar.setEnabled(false);
-            //finish();
-        }
-        else {
-            if(mesa<0) { // Verificación de si hay 0 en la mesa
-                mesa = 2;
-                jugador1 -= 1;
-                jugador2 -= 1;
-            }
 
-            if(jugador){
-                tvJugador2.setTextColor(Color.GREEN);
-                tvJugador1.setTextColor(Color.BLUE);
-            }
-            else{
-                tvJugador2.setTextColor(Color.BLUE);
-                tvJugador1.setTextColor(Color.GREEN);
-            }
-            tvFichasJugador1.setText("No. Fichas: "+String.valueOf(jugador1));
-            tvFichasJugador2.setText("No. Fichas: "+String.valueOf(jugador2));
-            tvMesa.setText(String.valueOf(mesa));
-            Toast.makeText(this, leyenda, Toast.LENGTH_SHORT).show();
+        if(jugador){
+            tvJugador2.setTextColor(Color.GREEN);
+            tvJugador1.setTextColor(Color.BLUE);
         }
+        else{
+            tvJugador2.setTextColor(Color.BLUE);
+            tvJugador1.setTextColor(Color.GREEN);
+        }
+        tvFichasJugador1.setText("No. Fichas: "+String.valueOf(jugador1));
+        tvFichasJugador2.setText("No. Fichas: "+String.valueOf(jugador2));
+        tvMesa.setText(String.valueOf(mesa));
+        Toast toast = Toast.makeText(this, leyenda, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
     }
+
 }

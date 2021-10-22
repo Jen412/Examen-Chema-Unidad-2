@@ -131,6 +131,11 @@ public class SegundaActivity extends AppCompatActivity {
             jugador1--;
             jugador2--;
         }
+        if(mesa == 2 && numero3==6){
+            mesa =4;
+            jugador1--;
+            jugador2--;
+        }
         switch(numero3){
             case 1:
                 leyenda = "-1";
